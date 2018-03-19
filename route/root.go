@@ -14,4 +14,5 @@ func (r *RootRoute) InitRoutes(e *echo.Echo) {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 	e.Use(middleware.CORS())
+	e.HTTPErrorHandler = HandleError
 }

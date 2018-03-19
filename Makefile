@@ -48,7 +48,6 @@ cross-build: deps fmt
 			env GOOS=$$os GOARCH=$$arch CGO_ENABLED=0 go build -a -tags netgo -installsuffix netgo -o dist/$$os-$$arch/$(NAME); \
 		done; \
 	done
-	env GOOS=linux GOARCH=arm CGO_ENABLED=0 go build -a -tags netgo -installsuffix netgo -o dist/linux-arm/$(NAME); \
 
 dist: cross-build
 	cd dist && \

@@ -8,6 +8,8 @@ import (
 	"github.com/fgrosse/goldi"
 	"github.com/labstack/echo"
 	"github.com/prokosna/medusa_synapse/app"
+	"github.com/prokosna/medusa_synapse/domain"
+	"github.com/prokosna/medusa_synapse/infra"
 	"github.com/prokosna/medusa_synapse/route"
 	"github.com/urfave/cli"
 )
@@ -38,12 +40,17 @@ func main() {
 	ap.Action = func(c *cli.Context) error {
 		// Config
 		brokers = c.StringSlice("brokers")
+		conf := domain.Config{
+			Brokers: brokers,
+		}
 
 		// DI
 		registry := goldi.NewTypeRegistry()
 		config := map[string]interface{}{}
 		container := goldi.NewContainer(registry, config)
-		container.RegisterType("Medusa", app.NewMedusa)
+		container.RegisterType("Publisher", infra.NewPublisherKafka, conf)
+		container.RegisterType("Validator", infra.NewValidatorJson)
+		container.RegisterType("Medusa", app.NewMedusa, "@Publisher", "@Validator")
 		container.RegisterType("RootRoute", route.NewRootRoute)
 		container.RegisterType("MedusaRoute", route.NewMedusaRoute, "@Medusa")
 

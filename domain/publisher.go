@@ -1,5 +1,5 @@
 package domain
 
 type Publisher interface {
-	publish(message string) error
+	Publish(key string, img Image) error
 }

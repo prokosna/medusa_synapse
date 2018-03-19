@@ -2,6 +2,12 @@
 
 
 [[projects]]
+  name = "github.com/confluentinc/confluent-kafka-go"
+  packages = ["kafka"]
+  revision = "f696f02dcbb04d95b103c5b848bb15f749a996f7"
+  version = "v0.11.0"
+
+[[projects]]
   name = "github.com/dgrijalva/jwt-go"
   packages = ["."]
   revision = "06ea1031745cb8b3dab3f6a236daf2b0aa468b7e"
@@ -81,6 +87,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "a2972332a6fa2d6f24e2f381b714c888d2aace4808d14afbb89d653f5766e3c9"
+  inputs-digest = "e8180520d0b9231d878fef93f3a1011ec2a74dea3ec242e137047d1003a5240b"
   solver-name = "gps-cdcl"
   solver-version = 1
