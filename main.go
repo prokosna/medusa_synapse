@@ -32,7 +32,7 @@ func main() {
 		},
 		cli.StringSliceFlag{
 			Name:   "brokers, B",
-			Value:  &cli.StringSlice{"http://localhost:8000"},
+			Value:  &cli.StringSlice{"127.0.0.1:9092"},
 			Usage:  "Brokers list of Kafka",
 			EnvVar: "MS_BROKERS",
 		},
