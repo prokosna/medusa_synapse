@@ -6,6 +6,10 @@ import (
 	"fmt"
 	"image"
 
+	_ "image/gif"
+	_ "image/jpeg"
+	_ "image/png"
+
 	"github.com/prokosna/medusa_synapse/domain"
 	"github.com/prokosna/medusa_synapse/exception"
 )
@@ -47,6 +51,9 @@ func validateDataFormat(img domain.Image) error {
 		return exception.NewBadRequestError(err.Error())
 	}
 	_, format, err := image.DecodeConfig(bytes.NewReader(result))
+	if err != nil {
+		return exception.NewBadRequestError(err.Error())
+	}
 	if format != "jpeg" {
 		return exception.NewBadRequestError(fmt.Sprintf("jpeg format is expected as data, actual: %s", format))
 	}
